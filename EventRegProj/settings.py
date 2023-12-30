@@ -43,12 +43,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'rest_framework',
+
     'crispy_forms',
     'crispy_bootstrap5',
+
+    'LoginApp',
+    'EventApp',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Custome User model
+AUTH_USER_MODEL = "LoginApp.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,10 +136,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
 
+
 # Media Files
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
+
+
+# Login Url
+
+LOGIN_URL = '/account/login/'
 
 
 # Default primary key field type
