@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from LoginApp.decorators import unauthenticated_user
 
 # Messagaes 
 from django.contrib import messages
@@ -16,6 +17,7 @@ from LoginApp.forms import ProfileForm, SignupForm
 
 # Create your views here.
 
+@unauthenticated_user
 def signupView(request):
     title = 'SIGNUP'
     form = SignupForm
@@ -27,7 +29,7 @@ def signupView(request):
             return HttpResponseRedirect(reverse('LoginApp:login'))
     return render(request, 'LoginApp/signup.html', context={'title':title, 'form':form})
 
-
+@unauthenticated_user
 def loginView(request):
     title = 'LOGIN'
     form = AuthenticationForm()
@@ -41,6 +43,7 @@ def loginView(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('EventApp:profile'))
     return render(request, 'LoginApp/login.html', context={'title': title, 'form':form})
+
 
 @login_required
 def logoutView(request):
