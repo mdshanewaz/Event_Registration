@@ -41,7 +41,7 @@ def loginView(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('EventApp:profile'))
+                return HttpResponseRedirect(reverse('EventApp:home'))
     return render(request, 'LoginApp/login.html', context={'title': title, 'form':form})
 
 
@@ -50,3 +50,8 @@ def logoutView(request):
     logout(request)
     messages.warning(request, "You are logged out!")
     return HttpResponseRedirect(reverse('LoginApp:login'))
+
+@login_required
+def profile_view(request):
+    title = 'PROFILE'
+    return render(request, 'LoginApp/profile.html', context={'title':title})

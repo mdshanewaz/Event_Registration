@@ -5,5 +5,6 @@ from EventApp import views
 app_name = 'EventApp'
 
 urlpatterns = [
-    path('', views.profile_view, name='profile'),
+    path('', views.home_view, name='home'),
+    path('create_event/', views.event_view, name='create_event'),
 ]

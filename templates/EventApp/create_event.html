@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block title_block %} {{ title }} {% endblock %}
+
+{% block body_block %}
+<h2 class="mt-5">Create A New Event</h2>
+<form method="POST">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <button class="btn btn-success btn-sm" type="submit">CREATE EVENT</button>
+</form>
+<hr>
+{% endblock %}
