@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block title_block %} {{ title }} {% endblock %}
+
+{% block body_block %}
+<h2 class="mt-5 text-center">SAD to hear it that you are leving</h2>
+<hr>
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input class="btn btn-danger" type="submit" value="Confirm">
+</form>
+<a class="btn btn-primary mt-sm-3" href="{% url 'EventApp:home' %}">CANCEL</a>
+<hr>
+{% endblock %}

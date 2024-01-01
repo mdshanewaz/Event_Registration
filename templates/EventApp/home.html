@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block title_block %} {{ title }} {% endblock %}
+
+{% block body_block %}
+<h2 class="mt-5 text-center">Our Available Events List</h2>
+<hr>
+{% for event in events %}
+<div class="border border-primary m-3 p-2">
+    <h2><a href="{% url 'EventApp:event_page' pk=event.pk %}">{{event.title}}</a></h2>
+    <p>{{ event.user.profile.username }}</p>
+    <h3>{{event.location}}</h3>
+</div>
+{% endfor %}
+<hr>
+{% endblock %}

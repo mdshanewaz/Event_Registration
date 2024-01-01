@@ -54,4 +54,12 @@ def logoutView(request):
 @login_required
 def profile_view(request):
     title = 'PROFILE'
-    return render(request, 'LoginApp/profile.html', context={'title':title})
+    profile = ProfileModel.objects.get(user=request.user)
+    form = ProfileForm(instance=profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Changes are saved to Profile!")
+            form = ProfileForm(instance=profile)
+    return render(request, 'LoginApp/profile.html', context={'title':title, 'form':form})
