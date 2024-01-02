@@ -10,11 +10,13 @@
     <h2>{{event.title}}</h2>
     <p>{{ event.user.profile.username }}</p>
     <h3>{{event.location}}</h3>
-
+    <h5>Available seats = {{ event.slots }}</h5>
     {% if enroll1 %}
     <div class="alert alert-success">You have created the Event</div>
     {% elif enroll2 %}
     <div class="alert alert-primary">You have already joined</div>
+    {% elif enroll3 %}
+    <div class="alert alert-warning">No more Registration</div>
     {% else%}
     <form method="POST">
         {{ form|crispy }}
